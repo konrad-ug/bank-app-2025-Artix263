@@ -6,3 +6,6 @@ class TestAccount:
         account = Account("John", "Doe")
         assert account.first_name == "John"
         assert account.last_name == "Doe"
+    def test_default(self):
+        example_account=Account("Maciej","Dobrzyński")
+        assert example_account.balance==0
