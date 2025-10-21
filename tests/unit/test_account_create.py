@@ -40,6 +40,15 @@ class TestAccount:
         assert account.balance==50.0
 
 
+class TestTransferMoney:
+    def test_current_balance_after_influx(self):
+        account = Account("John", "Doe","64070867891","PROM_123")
+        account.transfer_gain(150.0)
+        assert account.balance==200.0
+    def test_current_balance_after_new_transfer(self):
+        account = Account("John", "Doe","64070867891","PROM_123")
+        account.transfer_lose(10.0)
+        assert account.balance==40.0
 
 
 

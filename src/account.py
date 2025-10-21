@@ -4,8 +4,14 @@ class Account:
         self.last_name = last_name
         self.balance= 50.0 if self.is_promo_code_valid(promotional_code) and self.is_promo_code_age_valid(pesel)  else 0.0
         self.pesel=pesel if self.is_pesel_valid(pesel) else "Invalid"
-        
-        
+    
+    def transfer_lose(self,money):
+        if self.balance>=money:
+            self.balance-=money
+        else:
+            print("Not enough money at account")
+    def transfer_gain(self,money):
+        self.balance=self.balance+money
     def is_pesel_valid(self,pesel):
         if len(pesel)==11 and pesel.isdigit():
             return True
