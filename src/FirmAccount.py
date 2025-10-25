@@ -1,4 +1,4 @@
-from src.transfer import Transfer
+from src.Transfer import Transfer
 
 
 class FirmAccount(Transfer):
@@ -6,12 +6,12 @@ class FirmAccount(Transfer):
         self.company_name=company_name
         self.nip=nip if self.nip_validation(nip) else "Niepoprawny NIP!"
         self.balance=0.0
+        self.account_fee=5.0
     def nip_validation(self,Nip):
         if len(Nip)==10:
             return True
         return False
     def transfer_express(self,value_money):
-        if value_money>0 and self.balance+5>=value_money:
-            self.balance-=value_money+5
+        super().transfer_express(value_money,self.account_fee)
             
         

@@ -75,11 +75,13 @@ class TestTransferMoney:
         account2.transfer_express(100)
         assert account1.balance==39.0
         assert account2.balance==895.0
+
     def test_express_outcome_negative_value(self):
         account2=FirmAccount("Januszex","1234567891")
         account2.balance=1000.0
         account2.transfer_express(-20)
         assert account2.balance==1000.0
+
     def test_express_outcome_negative_balance_after_fee(self):
         account2=FirmAccount("Januszex","1234567891")
         account1 = PersonalAccount("John", "Doe","64070867891","PROM_123")
@@ -88,15 +90,17 @@ class TestTransferMoney:
         account1.transfer_express(50.0)
         assert account2.balance==(-5.0)
         assert account1.balance==(-1.0)
+
     def test_express_outcome_transfer_bigger_than_saldo(self):
         account1 = PersonalAccount("John", "Doe","64070867891","PROM_123")
         account1.transfer_express(100.0)
         assert account1.balance==50.0
 
-
-
-
-
+    def test_express_outcome_negative_balance_after_fee_not_max(self):
+        account2=FirmAccount("Januszex","1234567891")
+        account2.balance=1000.0
+        account2.transfer_express(999.0)
+        assert account2.balance==(-4.0)
 
 
 

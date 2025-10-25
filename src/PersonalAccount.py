@@ -1,4 +1,4 @@
-from src.transfer import Transfer
+from src.Transfer import Transfer
 
 class PersonalAccount(Transfer):
     def __init__(self, first_name, last_name,pesel,promotional_code=None):
@@ -6,6 +6,7 @@ class PersonalAccount(Transfer):
         self.last_name = last_name
         self.balance= 50.0 if self.is_promo_code_valid(promotional_code) and self.is_promo_code_age_valid(pesel)  else 0.0
         self.pesel=pesel if self.is_pesel_valid(pesel) else "Invalid"
+        self.account_fee=1.0
     
     def is_pesel_valid(self,pesel):
         if len(pesel)==11 and pesel.isdigit():
@@ -30,6 +31,5 @@ class PersonalAccount(Transfer):
         else:
             return False
     def transfer_express(self,value_money):
-        if value_money>0 and self.balance+1>=value_money:
-            self.balance-=value_money+1
+        super().transfer_express(value_money,self.account_fee)
 
