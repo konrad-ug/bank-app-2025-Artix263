@@ -29,4 +29,7 @@ class PersonalAccount(Transfer):
             return True
         else:
             return False
+    def transfer_express(self,value_money):
+        if value_money>0 and self.balance+1>=value_money:
+            self.balance-=value_money+1
 

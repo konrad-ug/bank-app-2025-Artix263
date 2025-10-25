@@ -10,3 +10,8 @@ class FirmAccount(Transfer):
         if len(Nip)==10:
             return True
         return False
+    def transfer_express(self,value_money):
+        if value_money>0 and self.balance+5>=value_money:
+            self.balance-=value_money+5
+            
+        
