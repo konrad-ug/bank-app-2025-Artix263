@@ -1,4 +1,5 @@
 from src.account import Account
+from src.account import FirmAccount
 
 
 class TestAccount:
@@ -41,15 +42,40 @@ class TestAccount:
 
 
 class TestTransferMoney:
-    def test_current_balance_after_influx(self):
+    def test_income_transfer(self):
+        account = Account("John", "Doe","64070867891","PROM_123") #1. set up
+        account.transfer_gain(150.0) # 2.action
+        assert account.balance==200.0 # 3.assertion
+
+    def test_income_transfer_negative_value(self):
         account = Account("John", "Doe","64070867891","PROM_123")
-        account.transfer_gain(150.0)
-        assert account.balance==200.0
-    def test_current_balance_after_new_transfer(self):
+        account.transfer_gain(-20.0)
+        assert account.balance==50.0
+
+    def test_outcome_transfer(self):
         account = Account("John", "Doe","64070867891","PROM_123")
         account.transfer_lose(10.0)
         assert account.balance==40.0
 
+    def test_outcome_transfer_bigger_than_balance(self):
+        account = Account("John", "Doe","64070867891")
+        account.transfer_lose(20.0)
+        assert account.balance==0.0
+
+
+    
+
+class TestFirmAccount:
+    def test_account_creation(self):
+        account=FirmAccount("Januszex","1234567891")
+        assert account.company_name=="Januszex"
+        assert account.nip=="1234567891"
+    def test_Nip_to_long(self):
+        account=FirmAccount("Januszex","12345678911212")
+        assert account.nip=="Niepoprawny NIP!"
+    def test_Nip_to_short(self):
+        account=FirmAccount("Januszex","4567891")
+        assert account.nip=="Niepoprawny NIP!"
 
 
         
