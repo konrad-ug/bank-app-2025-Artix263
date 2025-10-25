@@ -1,18 +1,12 @@
-class Account:
+from src.transfer import Transfer
+
+class PersonalAccount(Transfer):
     def __init__(self, first_name, last_name,pesel,promotional_code=None):
         self.first_name = first_name
         self.last_name = last_name
         self.balance= 50.0 if self.is_promo_code_valid(promotional_code) and self.is_promo_code_age_valid(pesel)  else 0.0
         self.pesel=pesel if self.is_pesel_valid(pesel) else "Invalid"
     
-    def transfer_lose(self,money):
-        if self.balance>=money and money>0:
-            self.balance-=money
-        else:
-            print("Not enough money at account")
-    def transfer_gain(self,money):
-        if money>0:
-            self.balance+=money
     def is_pesel_valid(self,pesel):
         if len(pesel)==11 and pesel.isdigit():
             return True
@@ -36,12 +30,3 @@ class Account:
         else:
             return False
 
-class FirmAccount:
-    def __init__(self,company_name,nip):
-        self.company_name=company_name
-        self.nip=nip if self.nip_validation(nip) else "Niepoprawny NIP!"
-        self.balance=0.0
-    def nip_validation(self,Nip):
-        if len(Nip)==10:
-            return True
-        return False
