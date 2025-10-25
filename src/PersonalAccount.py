@@ -1,11 +1,13 @@
-class Account:
+from src.Transfer import Transfer
+
+class PersonalAccount(Transfer):
     def __init__(self, first_name, last_name,pesel,promotional_code=None):
         self.first_name = first_name
         self.last_name = last_name
         self.balance= 50.0 if self.is_promo_code_valid(promotional_code) and self.is_promo_code_age_valid(pesel)  else 0.0
         self.pesel=pesel if self.is_pesel_valid(pesel) else "Invalid"
-        
-        
+        self.account_fee=1.0
+    
     def is_pesel_valid(self,pesel):
         if len(pesel)==11 and pesel.isdigit():
             return True
@@ -28,4 +30,6 @@ class Account:
             return True
         else:
             return False
+    def transfer_express(self,value_money):
+        super().transfer_express(value_money,self.account_fee)
 
