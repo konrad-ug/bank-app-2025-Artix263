@@ -1,4 +1,4 @@
-from src.Transfer import Transfer
+from src.transfer import Transfer
 
 
 class FirmAccount(Transfer):
