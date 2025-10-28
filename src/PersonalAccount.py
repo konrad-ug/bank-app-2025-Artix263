@@ -1,4 +1,4 @@
-from src.Transfer import Transfer
+from src.transfer import Transfer
 
 class PersonalAccount(Transfer):
     def __init__(self, first_name, last_name,pesel,promotional_code=None):
