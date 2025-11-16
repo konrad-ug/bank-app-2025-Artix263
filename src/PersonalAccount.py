@@ -1,7 +1,8 @@
-from src.transfer import Transfer
+from src.Account import Account
 
-class PersonalAccount(Transfer):
+class PersonalAccount(Account):
     def __init__(self, first_name, last_name,pesel,promotional_code=None):
+        super().__init__()
         self.first_name = first_name
         self.last_name = last_name
         self.balance= 50.0 if self.is_promo_code_valid(promotional_code) and self.is_promo_code_age_valid(pesel)  else 0.0
@@ -32,6 +33,4 @@ class PersonalAccount(Transfer):
             return False
     def transfer_express(self,value_money):
         super().transfer_express(value_money,self.account_fee)
-    def test_pipeline_fail():
-        print("test")
 

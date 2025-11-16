@@ -1,8 +1,9 @@
-from src.transfer import Transfer
+from src.Account import Account
 
 
-class FirmAccount(Transfer):
+class FirmAccount(Account):
     def __init__(self,company_name,nip):
+        super().__init__()
         self.company_name=company_name
         self.nip=nip if self.nip_validation(nip) else "Niepoprawny NIP!"
         self.balance=0.0
