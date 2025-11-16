@@ -32,6 +32,4 @@ class PersonalAccount(Transfer):
             return False
     def transfer_express(self,value_money):
         super().transfer_express(value_money,self.account_fee)
-    def test_pipeline_fail():
-        print("test")
 
